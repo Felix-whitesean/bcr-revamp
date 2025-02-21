@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --primary-color: #8BDA8B;
+    --secondary-color: #1D871D;
+    --tertiary-color: rgb(220, 255, 220);
+    --primary-color-6: rgb(220, 255, 220, .6);
+    --white-grey: #EAEAEA;
+    --white-75: rgb(255, 255, 255, .75);
+    --white-4: rgb(255, 255, 255, .4);
+    --white-var: rgb(0, 0, 0, .7);
+    --p-text: ;
+    --title-text: ;
+}
+@font-face {
+    font-family: 'Inknut_Antiqua_Bold';
+    src: url('/fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf') format('truetype'),
+    url('/fonts/Inknut_Antiqua/InknutAntiqua-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Istok_Web';
+    src: url('/fonts/Istok_Web/IstokWeb-Regular.ttf') format('truetype'),
+         url('/fonts/Istok_Web/IstokWeb-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    position: relative;
+    font-family: 'Istok_Web';
+    font-weight: 300;
+}
+.background-layout{
+    position: relative;
+    border-radius: .4rem;
+    overflow: hidden;
+}
+.background-layout::before, .background-layout::after{
+    content: "";
+    position: absolute;
+    transform: rotate(33deg);
+    overflow: hidden;
+}
+.background-layout::before{
+    left: -5rem;
+    top: -1rem;
+    width: 850px;
+    z-index: -1;
+    height: 350px;
+    background: var(--tertiary-color);
+}
+.main::after{
+    content: "";
+    position: absolute;
+    transform: rotate(33deg);
+    overflow: hidden;
+    right: -15rem;
+    top: 3rem;
+    width: 800px;
+    height: 350px;
+    z-index: -1;
+    background: var(--primary-color-6);
+}
+.name{
+    font-family: 'Inknut_Antiqua';
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.text button{
+    box-shadow: 0 4px 4px rgb(0, 0, 0, .25);
+    color: rgb(0, 0, 0, .6);
+    font-family: 'Istok_Web';  
+}
+.buttons{
+    font-family:'Istok_Web';
+    font-weight: normal;
+    font-size: 18px;
+}
+.title button span{
+    font-weight: bold;
+}
+.hero h2{
+    font-family: 'Istok_Web';
+    font-weight: bold;
+    font-size:22px;
+    margin: auto;
+    text-transform: capitalize;
+}
+/* .inputs label{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+} */
+.auth input{
+    background: transparent;
+    padding: 3px 5px;
+    padding-top: 0;
+    color: var(--secondary-color);
+}
+.verification input{
+    background: transparent;
+    border-bottom: 2px solid black;
+}
+.auth input:focus, .verification input:focus{
+    border: transparent;
+    outline: transparent;
+    border-bottom: 1px solid var(--secondary-color);
+}
+.submit{
+    outline: 1px solid transparent;
+}
+.submit:active{
+    border: 1px solid transparent;
+    outline: 1px solid black;
+}
+button:focus{
+    border: transparent;
+    outline: 1px solid var(--secondary-color);
+}
+.verification{
+    width: 12px;
+    text-align: center;
+}
+.verification:focus{
+    outline: none;
+}
