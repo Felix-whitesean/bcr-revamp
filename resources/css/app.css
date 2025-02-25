@@ -90,7 +90,8 @@ body{
     font-family: 'Istok_Web';
     font-weight: bold;
     font-size:22px;
-    margin: auto;
+    /* margin: auto; */
+    text-align:center;
     text-transform: capitalize;
 }
 /* .inputs label{
@@ -104,6 +105,7 @@ body{
     padding-top: 0;
     color: var(--secondary-color);
 }
+
 .verification input{
     background: transparent;
     border-bottom: 2px solid black;

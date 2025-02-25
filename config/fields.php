@@ -41,6 +41,18 @@
             'agreement' => 'required',
             'subscription' => '',
         ],
+        'VERIFICATION_CODE_ID' => [
+            'input1' => 'input1',
+            'input2' => 'input2',
+            'input3' => 'input3',
+            'input4' => 'input4',
+        ],
+        'VERIFICATION_CODE_TYPE' => [
+            'input1' => 'number',
+            'input2' => 'number',
+            'input3' => 'number',
+            'input4' => 'number',
+        ],
         'USERS' => [
             'username' => 'null',
             'email' => 'null',
@@ -51,6 +63,14 @@
             'authorization_token' => '',
             'agreement' => '0',
             'subscription' => '0',
+            'account_status' => '',
         ],
+        'ACCOUNT' => [
+            'owner' => '',
+            'account_status' => '',
+            'created_at' => '',
+            'verified_at' => '',
+            'type'=> '',
+        ]
     ];
 ?>
