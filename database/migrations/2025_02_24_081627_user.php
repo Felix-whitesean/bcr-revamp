@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         //
-        Schema::create('input-fields', function (Blueprint $table) {
+        Schema::create('user', function (Blueprint $table) {
             $table->id();
-            $table->string('form_id')->default(0);
             $table->string('name')->default(0);
             $table->integer('phone_number')->default(0);
             $table->string('email')->default(0);

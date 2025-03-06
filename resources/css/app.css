@@ -6,7 +6,7 @@
     --primary-color: #8BDA8B;
     --secondary-color: #1D871D;
     --tertiary-color: rgb(220, 255, 220);
-    --primary-color-6: rgb(220, 255, 220, .6);
+    --primary-color-6: rgba(220, 255, 220, 0.6);
     --white-grey: #EAEAEA;
     --white-75: rgb(255, 255, 255, .75);
     --white-4: rgb(255, 255, 255, .4);
@@ -42,19 +42,22 @@ body{
     border-radius: .4rem;
     overflow: hidden;
 }
-.background-layout::before, .background-layout::after{
-    content: "";
+.background-layout::before{
+    content: "This is the before";
     position: absolute;
     transform: rotate(33deg);
     overflow: hidden;
-}
-.background-layout::before{
     left: -5rem;
-    top: -1rem;
+    top: -.1rem;
     width: 850px;
     z-index: -1;
     height: 350px;
     background: var(--tertiary-color);
+}
+.main{
+    position: relative;
+    z-index: 50;
+    overflow: visible;
 }
 .main::after{
     content: "";
@@ -65,8 +68,10 @@ body{
     top: 3rem;
     width: 800px;
     height: 350px;
-    z-index: -1;
+    z-index: 1;
+    /* rgb(178, 178, 255) */
     background: var(--primary-color-6);
+    /* background: rgb(178, 178, 255); */
 }
 .name{
     font-family: 'Inknut_Antiqua';
@@ -132,4 +137,89 @@ button:focus{
 }
 .verification:focus{
     outline: none;
+}
+.horizontal, .vertical{
+    position: relative;
+    padding: 4px;
+}
+.horizontal{
+    width: 100%;
+    height: fit-content;
+}
+.vertical{
+    width: 100%;
+    height: 100%;
+}
+.circle{
+    position: absolute;
+    width: 71px;
+    height: 71px;
+    border-radius: 50%;
+}
+.third{
+    background-image: url('/public/images/img3.jpeg');
+    background-size: 150% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.first::before, .second::before, .third::before, .fourth::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: rotate(-45deg);
+    border-radius: 50%;
+}
+.third::before{
+    background-image: url('/public/images/img3.jpeg');
+    background-size: 150% 100%;
+}
+.fourth::before{
+    background-image: url('/public/images/img4.jpg');
+    background-size: cover;
+}
+.second::before{
+    background-image: url('/public/images/img2.jpg');
+    background-size: cover;
+    border: 1px solid black;
+}
+.first::before{
+    background-image: url('/public/images/download.jpeg');
+    background-size: cover 100%;
+}
+.first::after, .second::after, .third::after, .fourth::after{
+    position: absolute;
+    content: "";
+    background: brown;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1 solid black;
+    z-index: 11;
+}
+.first::after, .second::after{
+    margin-top: -10px;
+}
+.third::after, .first::after{
+    margin-left: -10px;
+}
+.third::after, .fourth::after{
+    margin-top: 10px;
+}
+.fourth::after, .second::after{
+    margin-left: 10px;
+}
+.first::after{
+    background: linear-gradient(-45deg, transparent 80%, black 10%);
+}
+.second::after{
+    background: linear-gradient(45deg, transparent 80%, green 10%);
+}
+.third::after{
+    background: linear-gradient(-135deg, transparent 80%, var(--primary-color) 10%);
+}
+.fourth::after{
+    background: linear-gradient(135deg, transparent 80%, grey 10%);
 }

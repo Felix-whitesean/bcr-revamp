@@ -4,7 +4,7 @@
 
 @endphp
 
-<div class="flex flex-col absolute r-0 w-[100%] h-[100%] top-0 bg-[#ffffffdf] gap-8">
+<div class="flex flex-col absolute r-0 w-[100%] h-[100%] top-0 bg-[#ffffffdf] gap-8 hidden">
     <!-- Nothing worth having comes easy. - Theodore Roosevelt -->
     <h3 class="mx-auto self-start mt-32">Enter the verification code</h3>
     <form action="" method="post" class="flex flex-col gap-8 mx-auto">

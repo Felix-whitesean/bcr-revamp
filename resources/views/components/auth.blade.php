@@ -29,7 +29,7 @@
             <span>{{$isSignIn ? 'Account is inactive' : ''}}</span>
         </div>
     </form>
-    <x-verification formtype="verification"></x-verification>
+    <x-verification formtype="verification" class="hidden"></x-verification>
 
 <script>
             

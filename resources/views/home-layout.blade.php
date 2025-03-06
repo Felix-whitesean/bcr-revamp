@@ -1,3 +1,7 @@
+@php
+    $isAdminPage = Request::is('dashboard');
+@endphp
+
 @livewireStyles
 @livewireScripts
 
@@ -14,23 +18,13 @@
             <link rel="stylesheet" href="{{ asset('css/output.css') }}">
         </head>
         <body class="bg-[var(--white-grey)] overflow-hidden lg:overflow-y-hidden overflow-y-auto max-w-[100vw]" >
-            <div class="background-layout  text-white w-[95vw] lg:h-[95vh] h-[98vh] m-auto my-[1rem] max-w-[100vw] overflow-hidden"></div>
-            <div class="main absolute bg-[var(--white-75)] w-[98vw] h-max min-h-[95vh] z-50 mx-4 pr-8 pt-0 left-0 top-0 rounded-md pb-8 z-11">
-                <div class="w-[98vw] m-auto">
-                    <div class="title flex lg:flex-row sm:flex-col gap-4 justify-between text-black bg-[var(--white-4)] lg:px-4 sm:px-2 rounded-md">
-                        <div class="company flex gap-4">
-                            <img class="logo w-[60px] h-60px self-center" src="{{ asset('images/f1.png') }}" alt="">
-                            <div class="name lg:w-[309px] sm:w-max leading-[30px] text-[24px] text-[var(--secondary-color)]">Biochar climate resolution</div>
-                        </div>
-                        <button class="flex self-end gap-[1rem] sm:gap-16 py-2 px-8 leading-[20px] justify-between bg-[#8BDA8B] mr-8">
-                            <i class="fi-rs-user self-center rounded-[50%] border-2 border-black bg-white px-2 py-[10px] pt-[7px]"></i>
-                            <span class="font-bold self-center font-['Istok_Web_Bold'] tracking-[.6px] font-[18px] rounded-md m-auto">Join us</span>
-                        </button>
-                    </div>
-                    <div class="hero">
-                        <livewire:dynamic-content />
-                    </div>
-                </div>
+            <div class="background-layout text-white w-[95vw] lg:h-[95vh] h-[98vh] m-auto my-[1rem] max-w-[100vw] overflow-hidden"></div>
+            <div class="main absolute w-[98vw] h-max min-h-[95vh] left-0 top-0 rounded-md pb-8 z-[11] overflow-hidden flex flex-col {{ $isAdminPage ? 'transparent ml-4' : 'bg-[var(--white-75)] mx-4 pr-8 pt-0'}}">
+                @if ($isAdminPage)
+                    <x-admin-page class="h-full"></x-admin-page>
+                @else
+                    <x-default-home-container></x-default-home-container>
+                @endif
             </div>
         </body>
     </html>
