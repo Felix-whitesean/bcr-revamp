@@ -24,3 +24,30 @@ return [
         'forms' => 'Forms',
     ]
 ];
+return [
+    'head-tags' => [
+        'head1' => 'h1',
+        'head2'=> 'h2',
+        'head3'=> 'h3',
+        'head4'=> 'h4',
+        'head5'=> 'h5',
+        'head6'=> 'h6',
+    ],
+    'paragraph-tags' => [
+        'paragraph'=> 'p',
+        'break'=> 'br',
+        'horizontal'=> 'hr',
+    ]
+];
+return [
+    'styles-text' => [
+        'bold' => 'bold',
+    ],
+    'styles-paragraph' => [
+        '' => 'Home',
+    ],
+    'styles-general' => [
+        'padding' => '',
+        'margin' => '',
+    ]
+];

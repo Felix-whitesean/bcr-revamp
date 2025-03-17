@@ -14,6 +14,12 @@
     --p-text: ;
     --title-text: ;
 }
+/* h5 {
+    @apply text-base font-bold;
+}
+h6 {
+    @apply text-sm font-bold;
+} */
 @font-face {
     font-family: 'Inknut_Antiqua_Bold';
     src: url('/fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf') format('truetype'),
@@ -31,11 +37,28 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    user-select: none;
+}
+h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: Istok_Web;
+}
+h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+h4 {
+    font-size: 18px;
+    font-weight: 700;
 }
 body{
     position: relative;
     font-family: 'Istok_Web';
-    font-weight: 300;
 }
 .background-layout{
     position: relative;
@@ -222,4 +245,9 @@ button:focus{
 }
 .fourth::after{
     background: linear-gradient(135deg, transparent 80%, grey 10%);
+}
+.btnList button{
+    border-bottom: 1px solid white;
+    padding-right: 10px;
+    padding-left: 10px;
 }

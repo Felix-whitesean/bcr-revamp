@@ -1,5 +1,4 @@
 @php
-
     $menu_items = config('reference.menu_icons');
     $menu_items_name = config('reference.menu_content');
     $menu_item = 'project-management';
@@ -14,7 +13,7 @@
     </div>
     <div class="overflow-y-auto flex flex-col gap-4 pt-8 flex-[0_0_82%]  overflow-y-auto">
         @foreach ($menu_items as $menu_item => $label)
-            <a href="{{$menu_item}}" class="flex gap-4 w-fit px-8 text-[18px]">
+            <a href="?r={{$menu_item}}" class="flex gap-4 w-fit px-8 text-[18px]">
                 @if ($menu_item === 'project-management')
                     <x-icon name="fluentui-document-settings-16-o" class="h-[20px]" />
                 @else

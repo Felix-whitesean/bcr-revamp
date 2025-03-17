@@ -5,8 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ToggleState extends Model {
+class Section extends Model
+{
+    //
     use HasFactory;
 
-    protected $fillable = ['is_on']; // Allow mass assignment
+    protected $table = 'sections';
+
+    protected $fillable = ['title', 'content','title_tag'];
+    
 }
