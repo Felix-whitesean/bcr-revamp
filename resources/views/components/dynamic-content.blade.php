@@ -1,88 +1,107 @@
 @php
     $selectedHeadingTag = $title_tag ?? 'h1';
-    $contentText = $content ?? 'This is a hero of the page. The content of this page.';
-    $headingText = $title_content ?? '';
+    if($selectedHeadingTag == ''){
+        $selectedHeadingTag = 'h1';
+    }
+    $contentText = $content ?? 'Change content';
+    $headingText = $title_content ?? 'Edit title';
+    $currentId = $id;
+    if($headingText == '' && $contentText == '' ){
+        echo "No component of id "+$id;
+    }
+    else if($headingText == '' && !$contentText == ''){
+        $headingText = 'Change heading';
+    }
+    else if(!$headingText == '' && $contentText == ''){
+        $contentText = 'Change content';
+    }
 @endphp
 
-<div id="dynamicTagComponent" class="block" data-id="{{ $id }}">
-    <div id="headingContainer" class="prose z-[11]">
-        <{{ $selectedHeadingTag }} class="dynamicTag flex ">
+<div class="block dynamicTagComponent" data-id="{{ $id }}">
+    <div id="headingContainer" class="headingContainer prose z-[11]">
+        <{{ $selectedHeadingTag}} class="dynamicTag flex">
             <span contenteditable="true" onblur="updateTitleContent(this)">{{$headingText}}</span>
             <div class="self-center relative">
-                <span><i class="fi fi-rr-caret-down"></i></span>
+                <span><i class="fi fi-rr-caret-down" onclick="toggleFunction(this)"></i></span>
                 <div class="bg-gray-300 btnList flex flex-col gap-2 absolute right-0">
-                    <button onclick="changeTag('h1')">H1</button>
-                    <button onclick="changeTag('h2')">H2</button>
-                    <button onclick="changeTag('h3')">H3</button>
-                    <button onclick="changeTag('h4')">H4</button>
-                    <button onclick="changeTag('h5')">H5</button>
-                    <button onclick="changeTag('h6')">H6</button>
+                    <button onclick='changeTag("h1", "{{ $id }}")'>H1</button>
+                    <button onclick='changeTag("h2", "{{ $id }}")'>H2</button>
+                    <button onclick='changeTag("h3", "{{ $id }}")'>H3</button>
+                    <button onclick='changeTag("h4", "{{ $id }}")'>H4</button>
+                    <button onclick='changeTag("h5", "{{ $id }}")'>H5</button>
+                    <button onclick='changeTag("h6", "{{ $id }}")'>H6</button>
+
                 </div>
             </div>
-        </{{ $selectedHeadingTag }}>
+        </{{ $selectedHeadingTag}}>
     </div>
     <div>
         <p id="editableContent" class="content text-[18px]" contenteditable="true" 
-            onkeydown="handleEnter(event)" onblur="updateContent(this)" data-id="{{ $id }}">
+            onkeydown="handleEnter(event)" onblur="updateContent(this, {{ $id }})" data-id="{{ $id }}">
             {!! $contentText !!}
         </p>
     </div>
 </div>
 
 <script>
-    var headingContainer = document.getElementById('headingContainer');
-    var toggleBtn = headingContainer.querySelector('i');
-    var toggledList = headingContainer.querySelector('.btnList');
-    let component = document.getElementById("dynamicTagComponent");
-    let id = component.getAttribute("data-id");
+    var main = document.querySelector('.main');
+    var toaster = main.querySelector('.toast');
+    console.log(toaster)
+    document.querySelectorAll('.dynamicTagComponent').forEach(component => {
+        let toggleBtn = component.querySelector('i');
+        let id = component.getAttribute("data-id");
+        let toggledList = component.querySelector('.btnList'); 
 
-    toggledList.style.visibility = "hidden";
-    toggleBtn.addEventListener("click", function(){
-        toggleFunction(this);
+        // Ensure initial state is hidden
+        toggledList.style.display = "none";
+
     });
+
     function toggleFunction(element) {
-        if (element.classList.contains('fi-rr-caret-up')) {
-            element.classList.replace('fi-rr-caret-up', 'fi-rr-caret-down');
-            toggledList.style.visibility = "hidden";
+        let toggledList = element.parentElement.parentElement.querySelector('div'); 
+        console.log(toggledList)
+        if (toggledList.style.display === "none") {
+            toggledList.style.display = "block"; // Show list
+            element.classList.replace('fi-rr-caret-down', 'fi-rr-caret-up'); // Change icon
         } else {
-            element.classList.replace('fi-rr-caret-down', 'fi-rr-caret-up');
-            toggledList.style.visibility = "visible";
+            toggledList.style.display = "none"; // Hide list
+            element.classList.replace('fi-rr-caret-up', 'fi-rr-caret-down'); // Change icon
         }
     }
-    function changeTag(tag) {
+
+    function changeTag(tag, componentId) {
         fetch("{{ route('tag.update') }}", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             },
-            body: JSON.stringify({ id: id, title_tag: tag })
+            body: JSON.stringify({ id: componentId, title_tag: tag })
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                switchTag(tag)
+                let component = document.querySelector(`[data-id='${componentId}']`);
+                switchTag(tag, component);
             }
         })
         .catch(error => console.error('Error:', error));
     }
-    function switchTag(newTag) {
-        console.log(newTag)
 
-        let oldElement = document.querySelector(".dynamicTag"); // Select the current element
+    function switchTag(newTag, component) {
+        let oldElement = component.querySelector(".dynamicTag"); 
         if (!oldElement) return;
 
-        let newElement = document.createElement(newTag); // Create new tag
-        newElement.className = oldElement.className; // Copy class attributes
+        let newElement = document.createElement(newTag);
+        newElement.className = oldElement.className;
 
-        // Move all children to the new element
         while (oldElement.firstChild) {
             newElement.appendChild(oldElement.firstChild);
         }
 
-        // Replace the old element with the new one
         oldElement.parentNode.replaceChild(newElement, oldElement);
     }
+
     function handleEnter(event) {
         if (event.key === "Enter") {
             event.preventDefault(); // Prevent default new paragraph behavior
@@ -90,15 +109,12 @@
         }
     }
 
-    function updateContent(element) {
-        let content = element.innerHTML; // Preserve <br> tags without making them visible
-        // let tag = element.tagName.toLowerCase();
-        // let id = element.getAttribute("data-id");
+    function updateContent(element, id) {
+        let content = element.innerHTML;
 
         fetch("{{ route('content.update') }}", {
             method: "POST",
             headers: {
-                "Accept": "application/json",
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             },
@@ -107,22 +123,55 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log(`Content with ID ${id} updated successfully!`);
-            } else {
-                console.log("Update failed:", data.message);
+                console.log("Content updated successfully!");
+                // var main = document.querySelector('.main');
+                // location.reload(); // Ensures session toast appears
+                toast('warning', 'Content update', 'Content updated successfully', 5000)
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error("Error:", error));
     }
-    function updateTitleContent(element) {
-        let title_content = element.innerHTML; // Preserve <br> tags without making them visible
-        // let tag = element.tagName.toLowerCase();
-        // let id = element.getAttribute("data-id");
+    function toast(toast_type, toast_title, toast_message, timeout){
+        var successBtn = toaster.querySelector (".success");
+        var errorBtn = toaster.querySelector (".error");
+        var warningBtn = toaster.querySelector (".warning");
+
+        successBtn.style.display="none";
+        errorBtn.style.display="none";
+        warningBtn.style.display="none";
+
+        if(toast_type == 'success'){
+            toaster.style.background = "var(--success-color)";
+            successBtn.style.display = "flex";
+        }
+        else if(toast_type == 'error'){
+            toaster.style.background = "var(--error-color)";
+            errorBtn.style.display = "flex";
+        }
+        else if(toast_type == 'warning'){
+            toaster.style.background = "var(--warning-color)";
+            warningBtn.style.display = "flex";
+        }
+        else{
+            toaster.style.background = "black";
+        }
+
+        var toastTitle = toaster.querySelector('h4');
+        toastTitle.textContent = toast_title;
+        var toastContent = toaster.querySelector('p');
+        toastContent.textContent = toast_message;
+
+        toaster.style.display = "flex";
+        setTimeout(function () {
+            toaster.style.display = "none";
+        }, timeout);
+    }
+    function updateTitleContent(element, id) {
+        let title_content = element.innerHTML;
 
         fetch("{{ route('title.update') }}", {
             method: "POST",
             headers: {
-                "Accept": "application/json",
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": "{{ csrf_token() }}"
             },
@@ -131,11 +180,11 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                console.log(`Content with ID ${id} updated successfully!`);
-            } else {
-                console.log("Update failed:", data.message);
+                console.log("Title updated successfully!");
+                console.log(document.querySelector('.main'))
+                // location.reload(); // Ensures session toast appears
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => console.error("Error:", error));
     }
 </script>

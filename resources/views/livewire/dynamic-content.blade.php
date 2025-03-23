@@ -3,7 +3,7 @@
     $formtype = request()->query('formtype', 'signup');
 @endphp
 <div class="navbar flex gap-8 flex-col overflow-hidden">
-    <div class="hero-views min-h-[65vh]">
+    <div class="hero-views h-[65vh] overflow-y-auto">
         @if($page === 'default')
             <div class="hero home flex lg:flex-row flex-col lg:max-w-[80%] m-auto mt-8">
                 <div class="text w-[50%] text-[22px] mt-8 text-center w-[50%] self-center">

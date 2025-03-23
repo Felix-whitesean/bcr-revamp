@@ -2,9 +2,6 @@
     $isAdminPage = Request::is('dashboard');
 @endphp
 
-@livewireStyles
-@livewireScripts
-
 <!Doctype HTML>
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
         <head>
@@ -14,18 +11,33 @@
             <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/js/app.js'])
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@flaticon/flaticon-uicons/css/all/all.css">
-            <link rel="icon" href="{{ asset('images/f1.png')  }}" type="icon">
+            <meta name="csrf-token" content="{{csrf_token()}}">
+            @livewireStyles
+            <link rel="icon" href="{{ asset('images/f1.png')}}" type="icon">
             <link rel="stylesheet" href="{{ asset('css/output.css') }}">
-            <meta name="csrf-token" content="{{ csrf_token() }}">
         </head>
         <body class="bg-[var(--white-grey)] overflow-hidden lg:overflow-y-hidden overflow-y-auto max-w-[100vw]" >
             <div class="background-layout text-white w-[95vw] lg:h-[95vh] h-[98vh] m-auto my-[1rem] max-w-[100vw] overflow-hidden"></div>
             <div class="main absolute w-[98vw] h-max min-h-[95vh] left-0 top-0 rounded-md pb-8 z-[11] overflow-hidden flex flex-col {{ $isAdminPage ? 'transparent ml-4' : 'bg-[var(--white-75)] mx-4 pr-8 pt-0'}}">
+                <div id="toast" class="toast absolute right-4 top-4 w-[300px] px-4 pt-2 pb-4 h-fit z-[1111] overflow-y-auto transition-opacity duration-300 ease-in-out opacity-100 flex flex-col hidden">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <x-hugeicons-tick-01 class="success text-[18px] text-white self-center"/>
+                            <x-lucide-x class="error text-[18px] text-white self-center"/>
+                            <x-uni-exclamation-triangle class="warning text-[18px] text-white self-center"/>
+                            <h4 class="text-white font-bold"></h4>
+                        </div>
+                        <button id="closeToast" class="text-white text-xl">&times;</button>
+                    </div>
+                    <p class="text-white mt-2"></p>
+                </div>
                 @if ($isAdminPage)
                     <livewire:admin-manager />
                 @else
                     <x-default-home-container></x-default-home-container>
                 @endif
+                <x-info/>
             </div>
+            @livewireScripts
         </body>
     </html>

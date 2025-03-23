@@ -1,4 +1,4 @@
-<div class="w-[98vw] m-auto">
+<div class="w-[98vw] m-auto z-[111]">
     <div class="title flex lg:flex-row sm:flex-col gap-4 justify-between text-black bg-[var(--white-4)] lg:px-4 sm:px-2 rounded-md">
         <div class="company flex gap-4">
             <img class="logo w-[60px] h-60px self-center" src="{{ asset('images/f1.png') }}" alt="">
