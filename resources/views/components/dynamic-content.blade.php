@@ -46,7 +46,6 @@
 <script>
     var main = document.querySelector('.main');
     var toaster = main.querySelector('.toast');
-    console.log(toaster)
     document.querySelectorAll('.dynamicTagComponent').forEach(component => {
         let toggleBtn = component.querySelector('i');
         let id = component.getAttribute("data-id");

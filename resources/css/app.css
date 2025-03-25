@@ -4,7 +4,7 @@
 
 :root{
     --primary-color: #8BDA8B;
-    --primary-color-per: #1DA71D90;
+    --primary-color-per: #8BDA8BAA;
     --secondary-color: #1D871D;
     --success-color: #1DA71DEA;
     --error-color: #F71D1DFA;
@@ -15,7 +15,9 @@
     --white-75: rgb(255, 255, 255, .75);
     --white-4: rgb(255, 255, 255, .4);
     --white-var: rgb(0, 0, 0, .7);
-    --p-text: ;
+    --black-6: rgb(0, 0, 0, .6);
+    --black-2: rgb(0, 0, 0, .2);
+    --test: #417d41;
     --title-text: ;
 }
 /* h5 {
@@ -25,10 +27,9 @@ h6 {
     @apply text-sm font-bold;
 } */
 @font-face {
-    font-family: 'Inknut_Antiqua_Bold';
+    font-family: 'Inknut_Antiqua';
     src: url('/fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf') format('truetype'),
     url('/fonts/Inknut_Antiqua/InknutAntiqua-Regular.ttf') format('truetype');
-    font-weight: normal;
     font-style: normal;
 }
 @font-face {
@@ -109,11 +110,11 @@ body{
     font-weight: bold;
     text-transform: uppercase;
 }
-.text button{
+/* .text button{
     box-shadow: 0 4px 4px rgb(0, 0, 0, .25);
     color: rgb(0, 0, 0, .6);
     font-family: 'Istok_Web';  
-}
+} */
 .buttons{
     font-family:'Istok_Web';
     font-weight: normal;
@@ -135,6 +136,19 @@ body{
     justify-content: space-between;
     gap: 1rem;
 } */
+ .auth{
+    z-index: 0;
+ }
+ .auth::after{
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: rgb(255, 255, 255, .1);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+ }
 .auth input{
     background: transparent;
     padding: 3px 5px;
@@ -155,12 +169,10 @@ body{
     outline: 1px solid transparent;
 }
 .submit:active{
-    border: 1px solid transparent;
-    outline: 1px solid black;
+    border: 1px solid;
 }
 button:focus{
-    border: transparent;
-    outline: 1px solid var(--secondary-color);
+    border: var(--black-2);
 }
 .verification{
     width: 12px;

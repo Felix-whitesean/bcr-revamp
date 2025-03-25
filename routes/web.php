@@ -12,19 +12,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/dashboard', function () {
+    if (!session()->has('user')) {
+        return redirect()->route('login');
+    }
+    return view('home-layout');
+})->name('dashboard');
 Route::get('/home', function () {
     return view('home-layout');
 });
-Route::get('/dashboard', function () {
-    return view('home-layout');
-});
-
 Route::post('/update-tag', [DynamicContentController::class, 'update'])->name('tag.update');
 
 Route::post('/content/update', [DynamicContentController::class, 'updateContent'])->name('content.update');
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::post('/title/update', [DynamicContentController::class, 'updateTitleContent'])->name('title.update');
 

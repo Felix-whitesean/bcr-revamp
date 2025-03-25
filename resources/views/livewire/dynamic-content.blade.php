@@ -1,10 +1,10 @@
 @php
-    $page = request()->query('page', 'default'); // Default to 'home' if no section is selected
-    $formtype = request()->query('formtype', 'signup');
+    $page = request()->query('page', ''); // Default to 'home' if no section is selected
+    $formtype = request()->query('formtype');
 @endphp
 <div class="navbar flex gap-8 flex-col overflow-hidden">
     <div class="hero-views h-[65vh] overflow-y-auto">
-        @if($page === 'default')
+        @if($page === '')
             <div class="hero home flex lg:flex-row flex-col lg:max-w-[80%] m-auto mt-8">
                 <div class="text w-[50%] text-[22px] mt-8 text-center w-[50%] self-center">
                     <h2 class="max-w-[261px]">Growing Resilience, Securing futures</h2>
@@ -22,9 +22,11 @@
             <h2>Projects</h2>
             <p>Here are our latest projects focusing on climate resilience.</p>
         @elseif($page === 'about')
-            <x-auth formtype="{{ $formtype }}" ></x-auth>
+            <x-auth formtype="{{ $formtype,'signin' }}" ></x-auth>
         @elseif($page === 'explore')
             <x-sign-up></x-sign-up>
+        @elseif($page === 'get-started')
+            <x-auth formtype="{{ $formtype,'signup' }}" ></x-auth>
         @else
             <div class="hero error flex flex-col self-center text-black-600 mt-32 bg-white-200 py-2 px-4">
                 <h2 class="text-gray-400">404</h2>
@@ -38,6 +40,6 @@
         <x-navigation-button link="About us" iconClass="fi-rs-info" page='about'></x-navigation-button>
         <x-navigation-button link="Projects" iconClass="fi fi-rs-rectangle-list"  page='projects'></x-navigation-button>
         <x-navigation-button link="Explore opportunities" iconClass="fi fi-rr-chair-office" page='explore'></x-navigation-button>
-        <button class="button min-w-fit font-bold text-[var(--secondary-color)] rounded-sm border-[2px] border-[var(--primary-color)] hover:border-[var(--secondary-color)] px-8 lg:px-24 py-2 tracking-[.6px] text-nowrap self-center">Get started </button>
+        <a href="?page=get-started" class="button min-w-fit font-bold text-[var(--secondary-color)] rounded-sm border-[2px] border-[var(--primary-color)] hover:text-green-900 hover:bg-white px-8 lg:px-24 py-2 tracking-[.6px] text-nowrap self-center">Get started </a>
     </div>
 </div>

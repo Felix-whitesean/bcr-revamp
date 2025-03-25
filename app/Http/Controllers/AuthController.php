@@ -13,7 +13,7 @@ class AuthController extends Controller
     // Show login form
     public function showLogin()
     {
-        return view('components.auth');
+        return view('home-layout');
     }
 
     // Show register form
@@ -28,7 +28,7 @@ class AuthController extends Controller
         try{
             
             $request->validate([
-                'username' => 'required|string|max:255',
+                'username' => 'required|string|min:5|max:255|unique:users,name',
                 'phone_number' => 'nullable|string|max:15',
                 'email' => 'required|email|unique:users',
                 'password' => 'required|min:6|confirmed',

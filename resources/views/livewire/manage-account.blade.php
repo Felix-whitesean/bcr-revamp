@@ -2,9 +2,9 @@
     $isLoggedIn = session('user');
 @endphp
 <div class="parent z-[111] flex gap-2 rounded-sm relative">
-    <span class="self-center p-2 flex">
-        <h4 class="relative rounded-[50%] bg-[var(--primary-color-per)] text-center px-2 py-1">{{ $isLoggedIn ? strtoupper(substr(session('user')->name, 0, 1)) : "<i class='fi fi-rs-user-check text-[20px] pl-2 pr-1 py-1 pb-0 border-[2px] border-black'></i>" }}<span class="w-2 h-2 rounded-md bg-blue-900 absolute right-0 -top-0"></span></h4>
-        <i class="fi fi-rr-caret-down toggleButton hover:cursor-pointer ml-[-2px] transition-transform self-end" id="caret"></i>
+    <span class="toggleButton self-center p-2 flex">
+        <h4 class="relative rounded-[50%] bg-[var(--primary-color-per)] text-center px-2 py-1 border-2 border-[var(--test)]">{{ $isLoggedIn ? strtoupper(substr(session('user')->name, 0, 1)) : "<i class='fi fi-rs-user-check text-[20px] pl-2 pr-1 py-1 pb-0 border-[2px] border-black'></i>" }}<span class="w-2 h-2 rounded-md bg-blue-900 absolute right-0 -top-0"></span></h4>
+        <i class="fi fi-rr-caret-down hover:cursor-pointer ml-[-2px] transition-transform self-end" id="caret"></i>
     </span>
     <button class="px-4 py-2 border-[2px] border-black hover:bg-[var(--primary-color)] self-center rounded-md flex"><i class="fi fi-rr-globe mr-4 self-center"></i><span class="self-center">Community</span></button>
     <div class="manage absolute left-0 top-[110%] bg-red-400 w-fit max-w-[250px] overflow-hidden text-ellipsis h-fit rounded-sm shadow-[2px_2px_6px_rgb(0,0,0,.2)] text-center max-w-[80%] hover:opacity-[.97] bg-white">
@@ -18,9 +18,11 @@
             </h4>
         </div>
         <hr>
-        <h5 class="p-2 hover:cursor-pointer hover:text-gray-500 w-full">Manage account</h5>
-        <hr>
-        <h5 class="text-red-500 p-2 hover:cursor-pointer hover:text-red-600 w-full">Log out</h5>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="text-red-500 p-2 hover:cursor-pointer hover:text-red-600 w-fit flex m-auto"><i class="fi fi-rr-sign-out-alt mr-2"></i><h5>Log out</h5></button>
+        </form>
+        <a href="logout"></a>
     </div>
 </div>
 <script>
@@ -37,11 +39,11 @@
 
     function manageToggleFunction(element) {
     
-        if (element.classList.contains('fi-rr-caret-up')) {
-            element.classList.replace('fi-rr-caret-up', 'fi-rr-caret-down');
+        if (element.querySelector('i').classList.contains('fi-rr-caret-up')) {
+            element.querySelector('i').classList.replace('fi-rr-caret-up', 'fi-rr-caret-down');
             manage.style.visibility = "hidden";
         } else {
-            element.classList.replace('fi-rr-caret-down', 'fi-rr-caret-up');
+            element.querySelector('i').classList.replace('fi-rr-caret-down', 'fi-rr-caret-up');
             manage.style.visibility = "visible";
             // manage.addEventListener("mouseleave", () => {
             //     if(element.classList.contains('fi-rr-caret-up')) {

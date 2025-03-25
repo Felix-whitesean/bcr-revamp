@@ -16,28 +16,31 @@
 @endphp
     <form action="{{ route( $isSignIn ? 'login' : 'register') }}" method="post" class="relative w-fit m-auto">
         @csrf
-        <div class="auth lg:min-w-[500px] sm:min-w-[400px] p-4 w-fit border-md bg-[f0f0f0] rounded-md m-auto flex flex-col gap-4 px-8 shadow-[5px_5px_5px_rgba(0,0,0,0.25)_inset,-5px_-5px_5px_rgba(0,0,0,0.25)_inset]">
-            <h2 class="bg-[--primary-color] box-border rounded-sm">{{$isSignIn ? "Sign in here" : "Sign up here"}}</h2> 
-            @if ($errors->has('email'))
-                <div class="text-red-500 text-center flex gap-4">
-                    <x-uni-exclamation-triangle class="h-[18px] self-center"/>
-                    {{ $errors->first('email') }}
-                    Please try again
+        <div style="background-image: url('{{ asset('images/auth-01.png')}}');" class="auth relative  bg-cover bg-center">
+            <div class="relative lg:min-w-[500px] sm:min-w-[400px] p-4 w-fit border-md m-auto flex flex-col gap-4 px-8 shadow-[0_4px_5px_rgba(0,0,0,0.25)]">
+                <h2 class="box-border text-[100] rounded-sm text-[rgb(75,75,75)]">{{$isSignIn ? "Sign in here" : "Sign up here"}}</h2> 
+                <p class="text-[var(--black-6)] text-[18px] text-center">{{$isSignIn ? "Welcome back." : "Start a great journey with us. Welcome to BCR."}}</p>
+                @if ($errors->has('email'))
+                    <div class="text-red-500 text-center flex gap-4">
+                        <x-uni-exclamation-triangle class="h-[18px] self-center"/>
+                        {{ $errors->first('email') }}
+                        Please try again
+                    </div>
+                @elseif($errors)
+                    <div class="text-red-500 text-center">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
+                @foreach ($fields as $name => $label)
+                    <x-input class="align-center mt-24" :inputName="$fields[$name]" :formtype="$formtype" :label="$labels[$name]" :type="$types[$name]" :id="$fields[$name]" :maxlength="50" style="border-b-[2px] border-b-black min-w-[65%]" bindString=":" :status="$status[$name]"/>
+                @endforeach
+                <button class="submit text-[19px] text-bold text-[var(--black-6)] hover:text-black self-center px-32 py-[3px] hover:bg-[--white-75] mt-4 shadow-[0_4px_5px_rgba(0,0,0,0.25)]  hover:shadow-[0_1px_5px_rgba(0,0,0,0.25)]">{{$isSignIn ? "Sign In" : "Sign Up"}}</button>
+                <div class="flex justify-between">
+                    <a href="{{$newUrl}}" class= "text-[--secondary-color] self-end font-italic active:text-black visited:underline-offset-2"> {{$isSignIn ? "Create a new account" : "Already have an account, Sign in"}} </a>
+                    <a href="{{$reset}}" class="text-red-600 self-end font-italic active:text-black visited:underline-offset-2 {{$isSignIn ? '': 'hidden' }}">Reset password</a>
                 </div>
-            @elseif($errors)
-                <div class="text-red-500 text-center">
-                    {{ $errors->first() }}
-                </div>
-            @endif
-            @foreach ($fields as $name => $label)
-                <x-input class="align-center mt-24" :inputName="$fields[$name]" :formtype="$formtype" :label="$labels[$name]" :type="$types[$name]" :id="$fields[$name]" :maxlength="50" style="border-b-[2px] border-b-black min-w-[65%]" bindString=":" :status="$status[$name]"/>
-            @endforeach
-            <button class="submit text-[19px] text-bold self-center rounded-sm px-32 py-[3px] border border-black hover:bg-[--white-75] mt-4">{{$isSignIn ? "Sign In" : "Sign Up"}}</button>
-            <div class="flex justify-between">
-                <a href="{{$newUrl}}" class= "text-[--secondary-color] self-end font-italic active:text-black visited:underline-offset-2"> {{$isSignIn ? "Create a new account" : "Have an account, Sign in"}} </a>
-                <a href="{{$reset}}" class="text-red-600 self-end font-italic active:text-black visited:underline-offset-2 {{$isSignIn ? '': 'hidden' }}">Forgot password</a>
             </div>
-            <span>{{$isSignIn ? 'Account is inactive' : ''}}</span>
+            
         </div>
     </form>
     <x-verification formtype="verification" class=""></x-verification>
