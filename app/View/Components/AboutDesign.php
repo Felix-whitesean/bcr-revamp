@@ -6,16 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Auth extends Component
+class AboutDesign extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $page;
-    public function __construct( $page='')
+    public function __construct()
     {
         //
-        $this -> page = $page;    
     }
 
     /**
@@ -23,6 +21,6 @@ class Auth extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form-components.auth');
+        return view('components.designs.about-design');
     }
 }

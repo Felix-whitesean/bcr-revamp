@@ -6,19 +6,20 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use App\Mail\Email;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/dashboard', function () {
-    if (!session()->has('user')) {
+    if (!Auth::check()) {
         return redirect()->route('login');
     }
     return view('home-layout');
 })->name('dashboard');
+
 Route::get('/home', function () {
     return view('home-layout');
 });

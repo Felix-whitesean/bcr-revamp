@@ -1,9 +1,8 @@
 @php
     $page = request()->query('page', ''); // Default to 'home' if no section is selected
-    $formtype = request()->query('formtype');
 @endphp
 <div class="navbar flex gap-8 flex-col overflow-hidden">
-    <div class="hero-views h-[65vh] overflow-y-auto">
+    <div class="hero-views h-[65vh] overflow-y-auto relative">
         @if($page == '')
             <div class="hero home flex lg:flex-row flex-col lg:max-w-[80%] m-auto mt-8">
                 <div class="text w-[50%] text-[22px] mt-8 text-center w-[50%] self-center">
@@ -22,11 +21,24 @@
             <h2>Projects</h2>
             <p>Here are our latest projects focusing on climate resilience.</p>
         @elseif($page === 'about')
-            <x-auth formtype="{{ $formtype,'signin' }}" ></x-auth>
+            <section class="flex px-4 justify-between w-[70%] mx-auto mt-8 gap-8">
+                <div class="">
+                    <x-dashboard.dynamic-tag :id=1/>
+                    <br>
+                    <x-dashboard.dynamic-tag class="test" :id=2/>
+                </div>
+                <x-about-design class="mr-4 self-center"/>
+            </section>
         @elseif($page === 'explore')
-            <x-sign-up></x-sign-up>
+            <div>
+                <h2>Recent opportunities</h2>
+            </div>
+        @elseif($page === 'login')
+            <x-auth page="{{ $page='login' }}" ></x-auth>
+        @elseif($page === 'signup')
+            <x-auth page="{{ $page='signup' }}" ></x-auth>
         @elseif($page === 'get-started')
-            <x-auth formtype="{{ $formtype,'signup' }}" ></x-auth>
+            <x-auth page="{{ $page,'login' }}" ></x-auth>
         @else
             <div class="hero error flex flex-col self-center text-black-600 mt-32 bg-white-200 py-2 px-4">
                 <h2 class="text-gray-400">404</h2>

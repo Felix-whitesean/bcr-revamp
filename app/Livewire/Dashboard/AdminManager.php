@@ -13,7 +13,6 @@ class AdminManager extends Component
     public function showSection($r)
     {
         $this->r = $r;
-        // $this->activeSection =  $r;
     }
 
     public function render()

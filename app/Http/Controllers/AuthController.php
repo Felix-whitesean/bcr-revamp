@@ -66,7 +66,6 @@ class AuthController extends Controller
             ]);
     
             if (Auth::attempt($credentials)) {
-                $request->session()->put('user', Auth::user());
                 return redirect('/dashboard');
             }
     
@@ -81,7 +80,6 @@ class AuthController extends Controller
     // Logout and clear session
     public function logout(Request $request)
     {
-        $request->session()->forget('user');
         Auth::logout();
         return redirect()->route('login');
     }

@@ -4,10 +4,13 @@
             <img class="logo w-[60px] h-60px self-center" src="{{ asset('images/f1.png') }}" alt="">
             <div class="name lg:w-[309px] sm:w-max leading-[30px] text-[24px] text-[var(--secondary-color)]">Biochar climate resolution</div>
         </div>
-        <button class="flex self-center gap-[1rem] sm:gap-16 py-2 rounded-md border-[2px] border-green-400 px-4 leading-[20px] justify-between bg-[#8BDA8B] mr-8">
-            <i class="fi fi-brands-microsoft-explorer"></i>
-            <span class="font-bold self-center italic tracking-[.6px] font-[18px] font-[Inknut_Antiqua] rounded-md m-auto">Explore</span>
-        </button>
+        <div class="flex gap-2 mr-4">
+            <button class="flex self-center gap-[1rem] sm:gap-16 py-2 rounded-md border-[2px] border-green-400 px-4 leading-[20px] justify-between bg-[#8BDA8B] mr-8">
+                <i class="fi fi-brands-microsoft-explorer"></i>
+                <span class="font-bold self-center italic tracking-[.6px] font-[18px] font-[Inknut_Antiqua] rounded-md m-auto">Explore</span>
+            </button>
+            <a href="?page=login" class="self-center"><x-majestic-door-enter-solid class="h-10 w-10 text-[var(--primary-color)]" /></a>
+        </div>
     </div>
     <div class="hero">
         <livewire:home.dynamic-content />

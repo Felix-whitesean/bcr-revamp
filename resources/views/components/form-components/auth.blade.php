@@ -5,14 +5,13 @@
     $labels = config('fields.FIELD_LABELS');
     $status = config('fields.FIELD_STATUS');
     
-    $isSignIn = $formtype === 'signin';
+    $isSignIn = $page === "login";
 
     $fields = $isSignIn ? $sign_in_fields : $sign_up_fields;
-    $alt = $isSignIn ? "signup" : "signin";
+    $alt = $isSignIn ? "signup" : "login";
 
-    $newUrl = request()->fullUrlWithQuery(['formtype' => $alt]);
+    $newUrl = request()->fullUrlWithQuery(['page' => $alt]);
     $reset = request()->fullUrlWithQuery(['reset' => '1']);
-
 @endphp
     <form action="{{ route( $isSignIn ? 'login' : 'register') }}" method="post" class="relative w-fit m-auto">
         @csrf
@@ -32,11 +31,14 @@
                     </div>
                 @endif
                 @foreach ($fields as $name => $label)
-                    <x-input class="align-center mt-24" :inputName="$fields[$name]" :formtype="$formtype" :label="$labels[$name]" :type="$types[$name]" :id="$fields[$name]" :maxlength="50" style="border-b-[2px] border-b-black min-w-[65%]" bindString=":" :status="$status[$name]"/>
+                    <x-input class="align-center mt-24" :inputName="$fields[$name]" :formtype="$page" :label="$labels[$name]" :type="$types[$name]" :id="$fields[$name]" :maxlength="50" style="border-b-[2px] border-b-black min-w-[65%]" bindString=":" :status="$status[$name]"/>
                 @endforeach
-                <button class="submit text-[19px] text-bold text-[var(--black-6)] hover:text-black self-center px-32 py-[3px] hover:bg-[--white-75] mt-4 shadow-[0_4px_5px_rgba(0,0,0,0.25)]  hover:shadow-[0_1px_5px_rgba(0,0,0,0.25)]">{{$isSignIn ? "Sign In" : "Sign Up"}}</button>
+                <button class="submit text-[19px] text-bold text-[var(--black-6)] hover:text-black self-center px-32 py-[3px] bg-[--white-4] hover:bg-[--white-75] mt-4 shadow-[0_4px_5px_rgba(0,0,0,0.25)]">{{$isSignIn ? "Sign In" : "Sign Up"}}</button>
                 <div class="flex justify-between">
-                    <a href="{{$newUrl}}" class= "text-[--secondary-color] self-end font-italic active:text-black visited:underline-offset-2"> {{$isSignIn ? "Create a new account" : "Already have an account, Sign in"}} </a>
+                    <div class="flex gap-2">
+                        <span>{{ $isSignIn ? "Don't have an account," : "Have an account,"}}</span>
+                        <a href="{{$newUrl}}" class= "text-[--secondary-color] self-end font-italic active:text-black visited:underline-offset-2 underline"> {{$isSignIn ? "Sign up" : "Sign in"}} </a>
+                    </div>
                     <a href="{{$reset}}" class="text-red-600 self-end font-italic active:text-black visited:underline-offset-2 {{$isSignIn ? '': 'hidden' }}">Reset password</a>
                 </div>
             </div>
