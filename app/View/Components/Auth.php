@@ -23,6 +23,6 @@ class Auth extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.auth');
+        return view('components.form-components.auth');
     }
 }

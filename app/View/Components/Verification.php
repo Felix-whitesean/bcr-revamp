@@ -23,6 +23,6 @@ class Verification extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.verification');
+        return view('components.form-components.verification');
     }
 }

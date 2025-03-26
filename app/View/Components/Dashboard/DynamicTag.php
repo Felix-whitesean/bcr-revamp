@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Dashboard;
 
 use App\Models\Section;
 use Closure;
@@ -23,7 +23,7 @@ class DynamicTag extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.dynamic-content', [
+        return view('components.reusable.container', [
             'title_tag' => $this->title_tag,
             'content' => $this->content,
             'title_content' => $this->title_content,

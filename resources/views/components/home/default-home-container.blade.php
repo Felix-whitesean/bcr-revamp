@@ -10,6 +10,6 @@
         </button>
     </div>
     <div class="hero">
-        <livewire:dynamic-content />
+        <livewire:home.dynamic-content />
     </div>
 </div>

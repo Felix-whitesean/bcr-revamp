@@ -28,6 +28,6 @@ class NavigationButton extends Component
      */
     public function render()
     {
-        return view('components.navigation-button');
+        return view('components.home.navigation-button');
     }
 }

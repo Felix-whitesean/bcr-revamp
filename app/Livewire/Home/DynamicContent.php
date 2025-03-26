@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Home;
 
 use Livewire\Component;
 
@@ -19,6 +19,6 @@ class DynamicContent extends Component
 
     public function render()
     {
-        return view('livewire.dynamic-content');
+        return view('livewire.home.dynamic-content');
     }
 }

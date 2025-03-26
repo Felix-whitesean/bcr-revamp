@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Dashboard;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class LayoutContainer extends Component
+class AdminSideBar extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class LayoutContainer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.default-home-container');
+        return view('components.dashboard.admin-sidebar');
     }
 }

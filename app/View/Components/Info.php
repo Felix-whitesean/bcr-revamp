@@ -21,6 +21,6 @@ class Info extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.info');
+        return view('components.reusable.info');
     }
 }

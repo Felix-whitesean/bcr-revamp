@@ -3,7 +3,7 @@
 @endphp
 <section class="min-h-[95vh] h-full relative flex flex-row gap-4">
     <!-- We must ship. - Taylor Otwell -->
-    <x-admin-sidebar class="h-full"></x-admin-sidebar>
+    <x-dashboard.admin-sidebar class="h-full"></x-dashboard.admin-sidebar>
     <div class="bg-white h-[full] w-[100%] rounded-lg p-4">
             <div class="static-components flex justify-between text-[18px] text-nowrap">
                 <div class="navlink flex gap-4 m-auto z-[11]">
@@ -23,9 +23,9 @@
                 @if($r === '')
                     <div class="about flex lg:gap-32 mt-8 text-[18px] p-3">
                         <div>
-                            <x-dynamic-tag :id=1/>
+                            <x-dashboard.dynamic-tag :id=1/>
                             <br>
-                            <x-dynamic-tag class="test" :id=2/>
+                            <x-dashboard.dynamic-tag class="test" :id=2/>
                         </div>
                         <div class="right z-[11] self-center mr-4">
                             <div class="cont w-[210px] h-[210px] rounded-[20px] bg-gray-200 rotate-45 shadow-[4px_0px_4px_rgb(0,0,0,.25)_inset,0px_-4px_4px_rgb(0,0,0,.25)_inset] flex flex-col">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                 @elseif($r === 'about-us')
-                    <x-dynamic-tag :id=3></x-dynamic-tag>
+                    <x-dashboard.dynamic-tag :id=3></x-dashboard.dynamic-tag>
                 @else
                     <div class="hero error text-black-600 mt-32 bg-white-200 py-2 px-4 flex flex-col self-center">
                         <h2 class="text-gray-400">404</h2>

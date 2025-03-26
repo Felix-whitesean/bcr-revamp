@@ -4,7 +4,7 @@
 @endphp
 <div class="navbar flex gap-8 flex-col overflow-hidden">
     <div class="hero-views h-[65vh] overflow-y-auto">
-        @if($page === '')
+        @if($page == '')
             <div class="hero home flex lg:flex-row flex-col lg:max-w-[80%] m-auto mt-8">
                 <div class="text w-[50%] text-[22px] mt-8 text-center w-[50%] self-center">
                     <h2 class="max-w-[261px]">Growing Resilience, Securing futures</h2>
@@ -36,7 +36,7 @@
 
     </div>
     <div class="buttons flex lg:flex-row flex-col lg:gap-8 gap-2 justify-between bottom-16 lg:mx-16 md:mx-2 leading-[22px] lg:px-0 px-8 sm:self-center">
-        <x-navigation-button link="Home" iconClass="fi-rs-bank" page='default' class="bg-green-200"></x-navigation-button>
+        <x-navigation-button link="Home" iconClass="fi-rs-bank" page='' class="bg-green-200"></x-navigation-button>
         <x-navigation-button link="About us" iconClass="fi-rs-info" page='about'></x-navigation-button>
         <x-navigation-button link="Projects" iconClass="fi fi-rs-rectangle-list"  page='projects'></x-navigation-button>
         <x-navigation-button link="Explore opportunities" iconClass="fi fi-rr-chair-office" page='explore'></x-navigation-button>

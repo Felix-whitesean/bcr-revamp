@@ -32,9 +32,9 @@
                     <p class="text-white mt-2"></p>
                 </div>
                 @if ($isAdminPage)
-                    <livewire:admin-manager />
+                    <livewire:dashboard.admin-manager />
                 @else
-                    <x-default-home-container></x-default-home-container>
+                    <x-home.default-home-container></x-home.default-home-container>
                 @endif
                 <x-info/>
             </div>
