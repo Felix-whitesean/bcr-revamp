@@ -20,12 +20,6 @@
     --test: #417d41;
     --title-text: ;
 }
-/* h5 {
-    @apply text-base font-bold;
-}
-h6 {
-    @apply text-sm font-bold;
-} */
 @font-face {
     font-family: 'Inknut_Antiqua';
     src: url('/fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf') format('truetype'),
@@ -44,26 +38,14 @@ h6 {
     box-sizing: border-box;
     user-select: none;
 }
-h1 {
-    font-size: 20px;
-    font-weight: 700;
+h1, h2, h3, h4, h5, h6 {
+    font-size: revert;
 }
-h2 {
-    font-size: 24px;
-    font-weight: 700;
-    font-family: Istok_Web;
+ol {
+    list-style-type: decimal !important;
 }
-h3 {
-    font-size: 20px;
-    font-weight: 700;
-}
-h4 {
-    font-size: 18px;
-    font-weight: 700;
-}
-h5 {
-    font-size: 18px;
-    font-weight: 700;
+li {
+    display: list-item !important;
 }
 body{
     position: relative;
@@ -153,7 +135,7 @@ body{
     background: transparent;
     padding: 3px 5px;
     padding-top: 0;
-    color: var(--secondary-color);
+    color: rgb(53, 53, 53);
 }
 
 .verification input{
@@ -171,11 +153,37 @@ body{
 .submit:active{
     border: 1px solid;
 }
+button{
+    background: var(--white-4);
+    box-shadow: 0 4px 5px rgb(0,0,0,0.25);
+    padding: 2px 4px;
+}
 button:hover{
     box-shadow: 0 1px 5px rgb(0,0,0,0.25);
 }
 button:focus{
-    border: rgb(0,0,0,0.25);
+    background-color: white;
+    border-color: transparent;
+}
+.projectpg::after{
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    content: "";
+    left: 0;
+    top: 0;
+    background-attachment: fixed;
+    background: linear-gradient(90deg, var(--primary-color-6) 0%,rgb(255, 255, 255, .9) 20%, rgb(255, 255, 255, .9) 80%, var(--primary-color-6) 100%);
+    z-index: 0;
+}
+.project_container::-webkit-scrollbar{
+    /* height: 2px; */
+    width: 2px;
+    background: var(--primary-color);
+}
+.project_container::-webkit-scrollbar-button{
+    width: 2px;
+    background: var(--primary-color);
 }
 .verification{
     width: 12px;

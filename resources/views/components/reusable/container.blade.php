@@ -22,9 +22,9 @@
     <div id="headingContainer" class="headingContainer prose z-[11]">
         <{{ $selectedHeadingTag}} class="dynamicTag flex">
             <span onblur='{{ $canEdit ? "updateTitleContent(this, $id )" : ""}}' contenteditable="{{ $canEdit ? 'true':'false'}}">{{$headingText}}</span>
-            <div class="self-center relative {{ $canEdit ? '' :'hidden'}}">
+            <div class="self-center relative {{ $canEdit ? :'hidden'}}">
                 <span><i class="fi fi-rr-caret-down" onclick="toggleFunction(this)"></i></span>
-                <div class="bg-gray-300 btnList flex flex-col gap-2 absolute right-0">
+                <div class="bg-gray-300 btnList flex flex-col gap-2 absolute right-0 hidden">
                     <button onclick='changeTag("h1", "{{ $id }}")'>H1</button>
                     <button onclick='changeTag("h2", "{{ $id }}")'>H2</button>
                     <button onclick='changeTag("h3", "{{ $id }}")'>H3</button>
@@ -60,11 +60,11 @@
     function toggleFunction(element) {
         let toggledList = element.parentElement.parentElement.querySelector('div'); 
         if (toggledList.style.display === "none") {
-            toggledList.style.display = "block"; // Show list
-            element.classList.replace('fi-rr-caret-down', 'fi-rr-caret-up'); // Change icon
+            toggledList.style.display = "block";
+            element.classList.replace('fi-rr-caret-down', 'fi-rr-caret-up');
         } else {
-            toggledList.style.display = "none"; // Hide list
-            element.classList.replace('fi-rr-caret-up', 'fi-rr-caret-down'); // Change icon
+            toggledList.style.display = "none";
+            element.classList.replace('fi-rr-caret-up', 'fi-rr-caret-down');
         }
     }
 
@@ -107,8 +107,8 @@
 
     function handleEnter(event) {
         if (event.key === "Enter") {
-            event.preventDefault(); // Prevent default new paragraph behavior
-            document.execCommand("insertLineBreak"); // Inserts an actual <br> without showing text
+            event.preventDefault();
+            document.execCommand("insertLineBreak");
         }
     }
 

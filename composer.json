@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "mallardduck/blade-lucide-icons": "^1.23",
+        "owenvoke/blade-fontawesome": "^2.9",
         "webklex/laravel-imap": "^4.1"
     },
     "require-dev": {

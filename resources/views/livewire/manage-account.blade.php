@@ -3,7 +3,7 @@
 @endphp
 <div class="parent z-[111] flex gap-2 rounded-sm relative">
     <span class="toggleButton self-center p-2 flex">
-        <h4 class="relative rounded-[50%] bg-[var(--primary-color-per)] text-center px-2 py-1 border-2 border-[var(--test)]">{{ $isLoggedIn ? strtoupper(substr($username, 0, 1)) : "<i class='fi fi-rs-user-check text-[20px] pl-2 pr-1 py-1 pb-0 border-[2px] border-black'></i>" }}<span class="w-2 h-2 rounded-md bg-blue-900 absolute right-0 -top-0"></span></h4>
+        <h4 class="relative rounded-[50%] bg-[var(--primary-color-per)] text-center w-8 h-8 border-2 border-[var(--test)]">{{ $isLoggedIn ? strtoupper(substr($username, 0, 1)) : "<i class='fi fi-rs-user-check text-[20px] pl-2 pr-1 py-1 pb-0 border-[2px] border-black'></i>" }}<span class="w-2 h-2 rounded-md bg-blue-900 absolute right-0 -top-0"></span></h4>
         <i class="fi fi-rr-caret-down hover:cursor-pointer ml-[-2px] transition-transform self-end" id="caret"></i>
     </span>
     <button class="px-4 py-2 border-[2px] border-black hover:bg-[var(--primary-color)] self-center rounded-md flex"><i class="fi fi-rr-globe mr-4 self-center"></i><span class="self-center">Community</span></button>
