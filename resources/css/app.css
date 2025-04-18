@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'Inknut_Antiqua';
+    src: url('/fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf') format('truetype'),
+    url('/fonts/Inknut_Antiqua/InknutAntiqua-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Istok_Web';
+    src: url('/fonts/Istok_Web/IstokWeb-Regular.ttf') format('truetype'),
+         url('/fonts/Istok_Web/IstokWeb-Bold.ttf') format('truetype');
+    font-style: normal;
+}
+
 :root{
     --primary-color: #8BDA8B;
     --primary-color-per: #8BDA8BAA;
@@ -18,20 +31,9 @@
     --black-6: rgb(0, 0, 0, .6);
     --black-2: rgb(0, 0, 0, .2);
     --test: #417d41;
-    --title-text: ;
+    --logo-text: 'Inknut_Antiqua';
 }
-@font-face {
-    font-family: 'Inknut_Antiqua';
-    src: url('/fonts/Inknut_Antiqua/InknutAntiqua-Bold.ttf') format('truetype'),
-    url('/fonts/Inknut_Antiqua/InknutAntiqua-Regular.ttf') format('truetype');
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Istok_Web';
-    src: url('/fonts/Istok_Web/IstokWeb-Regular.ttf') format('truetype'),
-         url('/fonts/Istok_Web/IstokWeb-Bold.ttf') format('truetype');
-    font-style: normal;
-}
+
 *{
     padding: 0;
     margin: 0;
@@ -291,4 +293,20 @@ button:focus{
     position: absolute;
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
+}
+
+/* index */
+/* .image img{
+    z-index: 11;
+} */
+.image::after{
+    left: 0;
+    top: 0;
+    width: 101%;
+    height: 101%;
+    position: absolute;
+    background: var(--primary-color-6);
+    z-index: 0;
+    content: "";
+    transform: rotate(5deg);
 }

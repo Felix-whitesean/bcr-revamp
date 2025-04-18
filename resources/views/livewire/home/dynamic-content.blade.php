@@ -4,6 +4,7 @@
 <div class="navbar flex gap-8 flex-col overflow-hidden">
     <div class="hero-views h-[65vh] overflow-y-auto relative flex flex-col">
         @if($page == '')
+            {{$page}}
             <div class="hero home flex lg:flex-row flex-col lg:max-w-[80%] m-auto mt-8">
                 <div class="text w-[50%] text-[22px] mt-8 text-center w-[50%] self-center">
                     <h2 class="max-w-[261px]">Growing Resilience, Securing futures</h2>
@@ -49,18 +50,20 @@
                 @endif
             </div>
         @elseif($page === 'about')
-            <section class="flex justify-between w-[70%] mx-auto my-8 gap-8">
-                <div class="">
-                    <x-dashboard.dynamic-tag :id=1/>
-                    <br>
-                    <x-dashboard.dynamic-tag class="test" :id=2/>
+            <section class="flex flex-col w-[70%] m-auto gap-4">
+                <div class="flex justify-between self-center  gap-8">
+                    <div class="">
+                        <x-dashboard.dynamic-tag :id=1/>
+                        <br>
+                        <x-dashboard.dynamic-tag class="test" :id=2/>
+                    </div>
+                    <x-about-design class="mt-4 mr-4 self-center"/>
                 </div>
-                <x-about-design class="mt-4 mr-4 self-center"/>
+                <button class="flex gap-4 w-fit self-start px-16 py-2 rounded-sm border border-[2px] text-[var(--secondary-color)] font-bold shadow-[1px_1px_5px_red-400)] hover:cursor-pointer hover:text-green-900 hover:bg-white">
+                    <x-fas-hand-holding-dollar class="w-6 h-6" />
+                    <span class="text-[18px]">Donate</span>
+                </button>
             </section>
-            <div class="flex gap-4 w-fit self-center px-16 py-2 rounded-sm border border-[2px] border-[var(--primary-color)] text-[var(--secondary-color)] font-bold shadow-[1px_1px_5px_red-400)] hover:cursor-pointer hover:text-green-900 hover:bg-white">
-                <x-fas-hand-holding-dollar class="w-6 h-6" />
-                <span class="text-[18px]">Donate</span>
-            </div>
         @elseif($page === 'explore')
             <div>
                 <h2>Recent opportunities</h2>

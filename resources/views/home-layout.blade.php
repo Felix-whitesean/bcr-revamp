@@ -1,5 +1,6 @@
 @php
     $isAdminPage = Request::is('dashboard');
+    $isIndex = Request::is('');
 @endphp
 
 <!Doctype HTML>
@@ -21,13 +22,7 @@
             <div class="main absolute w-[98vw] h-max min-h-[95vh] left-0 top-0 rounded-md pb-8 z-[11] overflow-hidden flex flex-col {{ $isAdminPage ? 'transparent ml-4' : 'bg-[var(--white-75)] mx-4 pr-8 pt-0'}}">
                 <div id="toast" class="toast absolute right-4 top-4 w-[300px] px-4 pt-2 pb-4 h-fit z-[1111] overflow-y-auto transition-opacity duration-300 ease-in-out opacity-100 flex flex-col hidden">
                     <div class="flex justify-between">
-                        <div class="flex w-full gap-4 self-end">
-                            <x-hugeicons-tick-01 class="success w-6 h-6 text-white self-center"/>
-                            <x-lucide-x class="error w-6 h-6 text-white self-center"/>
-                            <x-uni-exclamation-triangle class="warning w-6 h-6 text-white self-center"/>
-                            <h4 class="text-white font-bold self-end min-w-[80%]"></h4>
-                        </div>
-                        <button id="closeToast" class="text-white text-xl">&times;</button>
+                        <div class="flex w-full gap-4 self-end"></div>
                     </div>
                     <p class="text-white mt-2"></p>
                 </div>

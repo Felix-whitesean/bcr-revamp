@@ -7,7 +7,7 @@
 
 <label class="flex flex-col text-[18px] pr-4 relative">
     <div class="flex {{$isCheckbox ? 'flex-row-reverse self-start gap-4' : 'flex-row justify-between' }}">
-        <span>{{ $label }}{{ $isCheckbox ? "" : "$bindString" }}</span>
+        <span class="text-[#434343]">{{ $label }}{{ $isCheckbox ? "" : "$bindString" }}</span>
         <input class='{{$isCheckbox ? "w-fit" : "$style self-end" }}' type="{{ $type }}" name="{{ $inputName }}" id="{{$id}}" maxlength="{{$maxlength}}" placeholder="{{$type}}" {{$status}} {{ !$isCheckbox ? 'value=' . old($inputName) : '' }} >
         <span class="absolute right-8 bottom-2"><i onClick="toggleTarget(this)" class="{{ $isPassword ? 'fi fi-rr-eye' : '' }}"></i></span>
         <span class="text-red-600 absolute right-0 bottom-2">{{ ($isrequired && !$isverification) ? '*' : '' }}</span>
